@@ -136,6 +136,35 @@ function movieThis() {
         };
     });
 };
+    function doWhatItSays() {
+        fs.readFile('random.txt', 'utf8', function(err, data){
+        if (err) return console.log(err);
+
+        if(data.trim().includes("do-what-it-says")) {
+            log(("\nError") + " You cant call 'do-what-it-says' in random.txt choose another command\n"); 
+            return;
+        };
+        var arr = data.split(',');
+        switch(arr[0]) {
+            case "concert-this":
+            input = arr[1].trim();
+            concertThis();
+            break;
+            case "spotify-this-song":
+            input = arr[1].trim();
+            spotifyThisSong();
+            break;
+            case "movie-this":
+            input = arr[1].trim();
+            movieThis();
+            break;
+            default:
+            help();
+            break;
+
+        };
+    });
+};
 
     function spotifyThisSong() {
          spotify = new Spotify ({
@@ -176,36 +205,6 @@ function movieThis() {
                 logFile("\n----------\n");
             });
     };
-
-        function doWhatItSays() {
-            fs.readFile('random.txt', 'utf8', function(err, data){
-                if (err) return console.log(err);
-
-                if(data.trim().includes("do-what-it-says")) {
-                    log(("\nError") + " You cant call 'do-what-it-says' in random.txt choose another command\n"); 
-                    return;
-                };
-                var arr = data.split(',');
-                switch(arr[0]) {
-                    case "concert-this":
-                    input = arr[1].trim();
-                    concertThis();
-                    break;
-                    case "spotify-this-song":
-                    input = arr[1].trim();
-                    spotifyThisSong();
-                    break;
-                    case "movie-this":
-                    input = arr[1].trim();
-                    movieThis();
-                    break;
-                    default:
-                    help();
-                    break;
-
-                };
-            });
-        };
         function logFile(appendToLog) {
             fs.appendFile('log.txt', appendToLog, function(err){
                 if (err) return console.log(err);
