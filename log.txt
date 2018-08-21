@@ -36,3 +36,23 @@ Location: Köln, Germany
 Date: 09/04/2018
 
 ---------------
+Title: undefined
+Year: undefined
+IMDB rating: undefined
+Rotten Tomatoes rating: 29%
+Produced in: USA
+Language: English, Russian
+Plot: A group of bank robbers find their multi-million dollar plan interrupted by a hard-boiled detective.
+Actors: Chris Brown, Hayden Christensen, Matt Dillon, Michael Ealy
+
+---------------
+Title: undefined
+Year: undefined
+IMDB rating: undefined
+Rotten Tomatoes rating: 88%
+Produced in: USA
+Language: English, Swedish
+Plot: A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.
+Actors: Leonardo DiCaprio, Kate Winslet, Billy Zane, Kathy Bates
+
+---------------

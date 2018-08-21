@@ -6,7 +6,10 @@ var Spotify = require('node-spotify-api');
 var moment = require('moment');
 var fs = require('fs');
 var keys = require("./keys.js");
-var log = console.log;
+
+//hidden keys for spotify
+var spotifyId = keys.spotify.id;
+var spotifySecret = keys.spotify.secret;
 
 //store all of the arguments in an array
 //var nodeArgs = process.argv
@@ -49,7 +52,7 @@ process.exit(1);
 
 function concertThis() {
     if (!input) {
-        log("\n" + ("error: Invalid artist input!\n"));
+        console.log("\n" + ("error: Invalid artist input!\n"));
         log("Usage: node liri.js concert-this <artist-name>\n");
         return;
     } else {
@@ -64,10 +67,10 @@ function concertThis() {
             };
             var data = JSON.parse(body);
             for (var i = 0; i < 3; i++){
-                log("#" + (i + 1));
-                log(("Venue: ") + data[i].venue.name);
-                log(("Location: ") + data[i].venue.city + ", " + data[i].venue.country);
-                log("Date: " + moment(data[i].datetime, 'YYYY-MM-DD').format('MM/DD/YYYY') + "\n");
+                console.log("#" + (i + 1));
+                console.log(("Venue: ") + data[i].venue.name);
+                console.log(("Location: ") + data[i].venue.city + ", " + data[i].venue.country);
+                console.log("Date: " + moment(data[i].datetime, 'YYYY-MM-DD').format('MM/DD/YYYY') + "\n");
             var logData = 
                 `Artist: ${artist}\n` +
                 `Venue: ${data[i].venue.city}, ${data[i].venue.country}\n` +
@@ -83,7 +86,7 @@ function concertThis() {
 
 function movieThis() {
     if (!input) {
-        log("\nInvalid movie input. Defaulting to 'Mr. Nobody'")
+        console.log("\nInvalid movie input. Defaulting to 'Mr. Nobody'")
         var movie = "mr+nobody";
     } else {
         var movie = input.trim().replace(/ /g, "+");
@@ -105,19 +108,19 @@ function movieThis() {
                     var rottenTomatoes = "n/a";
                 }
             };
-            log(' ');
-            log(("Title:  ") + data.Title);
-            log(("Year:  ") + data.Year);
-            log(("IMDB rating:  ") + data.imdbRating);
-            log(("Rotten Tomatoes rating: ") + rottenTomatoes);
-            log(("Produced in:  ") + data.Country);
-            log(("Language:  ") + data.Language);
-            log(("Plot: \n") + data.Plot);
-            log("Actors: ");
+            console.log(' ');
+            console.log(("Title:  ") + data.Title);
+            console.log(("Year:  ") + data.Year);
+            console.log(("IMDB rating:  ") + data.imdbRating);
+            console.log(("Rotten Tomatoes rating: ") + rottenTomatoes);
+            console.log(("Produced in:  ") + data.Country);
+            console.log(("Language:  ") + data.Language);
+            console.log(("Plot: \n") + data.Plot);
+            console.log("Actors: ");
             for (var f = 0; f < actorsArr.length; f++) {
-                log('- ' + actorsArr[f].trim());
+                console.log('- ' + actorsArr[f].trim());
             };
-            log(' ');
+            console.log(' ');
 
             var logData =
             `Title: ${data.title}\n` +
@@ -136,12 +139,12 @@ function movieThis() {
 
     function spotifyThisSong() {
         var spotify = new Spotify ({
-            id: keys.spotify.id,
-            secret: keys.spotify.secret,
+            id: spotifyId,
+            secret: spotifySecret
         });
         if (!input) {
-            log("\nInvalid song specified. Defaulting to The Sign Ace of base");
-            var song = "The Sign Ace of base";
+            log("\nInvalid song specified. Defaulting to XXX");
+            var song = "XXX";
         } else {
             var song = input.trim();
         }
@@ -152,10 +155,10 @@ function movieThis() {
                 var artist = data.tracks.items[0].artist[0].name;
                 var album = data.tracks.items[0].album.name;
                 var preview = data.tracks.items.items[0].preview_url;
-                log(' ');
-                log(("Title:  ") + name);
-                log(("Artist:  ") + artist);
-                log(("Album:  ")+ album);
+                console.log(' ');
+                console.log(("Title:  ") + name);
+                console.log(("Artist:  ") + artist);
+                console.log(("Album:  ")+ album);
                 if (preview) {
                     log(("Preview (30 sec): ") + preview);
                 } else {
