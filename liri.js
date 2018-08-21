@@ -42,7 +42,7 @@ switch (command) {
 };
 
 function help() {
-    log("\n" + ("Wrong Command! Available commands:") + 
+    console.log("\n" + ("Wrong Command! Available commands:") + 
     "\n\n" + " " + ("concert-this") + " <artist name>\n" + 
     " " + ("spotify-this-song") + " <song name>\n" +
     " " ("movie-this") + "  <movie name>\n" +
@@ -138,19 +138,19 @@ function movieThis() {
 };
 
     function spotifyThisSong() {
-        var spotify = new Spotify ({
+         spotify = new Spotify ({
             id: spotifyId,
             secret: spotifySecret
         });
         if (!input) {
-            log("\nInvalid song specified. Defaulting to XXX");
+            console.log("\nInvalid song specified. Defaulting to XXX");
             var song = "XXX";
         } else {
             var song = input.trim();
         }
         spotify.search({
             type: 'track', query: song}, function (err,data) {
-                if (err) return log('\nSong not found! \n')
+                if (err) return console.log('\nSong not found! \n')
                 var name = data.tracks.items[0].name;
                 var artist = data.tracks.items[0].artist[0].name;
                 var album = data.tracks.items[0].album.name;
@@ -160,11 +160,11 @@ function movieThis() {
                 console.log(("Artist:  ") + artist);
                 console.log(("Album:  ")+ album);
                 if (preview) {
-                    log(("Preview (30 sec): ") + preview);
+                    console.log(("Preview (30 sec): ") + preview);
                 } else {
-                    log("No preview availble");
+                    console.log("No preview availble");
                 };
-                log(' ');
+                console.log(' ');
                 
                 var logData =
                 `Title: ${name}\n` +
