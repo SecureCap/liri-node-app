@@ -1,4 +1,4 @@
-console.log('this is loaded');
+console.log('loaded');
 
 let spotify = {
   id: process.env.SPOTIFY_ID,
